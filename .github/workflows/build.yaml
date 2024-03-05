@@ -7,7 +7,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
-            - uses: paulloz/godot-action@latest
+            - uses: paulloz/godot-action@v1.2.2
               with:
                 version: 4.2.1
     buildLinux:
