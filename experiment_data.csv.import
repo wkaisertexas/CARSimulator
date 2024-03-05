@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://cnqffqkamhecg"
+
+[deps]
+
+files=["res://experiment_data.HInput.translation", "res://experiment_data.VInput.translation", "res://experiment_data.Distance.translation", "res://experiment_data.Position.translation"]
+
+source_file="res://experiment_data.csv"
+dest_files=["res://experiment_data.HInput.translation", "res://experiment_data.VInput.translation", "res://experiment_data.Distance.translation", "res://experiment_data.Position.translation"]
+
+[params]
+
+compress=true
+delimiter=0
