@@ -3,42 +3,30 @@ on:
     push:
     pull_request:
 jobs:
-    setup:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v3
-            - uses: paulloz/godot-action@v1.2.2
-              with:
-                version: 4.0.1
-    buildLinux:
-        runs-on: ubuntu-latest
-        needs: setup
-        steps:
-            - run: |
-                godot --version
-                godot --export linux .
-            - run: |
-                ls -la
-            - uses: actions/upload-artifact@v2
-              with:
-                name: linux
-                path: export/linux
-    buildWindows:
-        runs-on: windows-latest
-        needs: setup
-        steps:
-            - run: |
-                godot --version
-                godot --export windows ./windows
-            - run: |
-                ls -la
-            - uses: actions/upload-artifact@v2
-              with:
-                name: windows
-                path: export/windows
+    build:
+      runs-on: ubuntu-latest
+      strategy:
+        matrix:
+          platform: [linux, windows]
+      steps:
+        - uses: actions/checkout@v2
+          with:
+            lfs: true
+        - name: Build
+          id: build
+          uses: manleydev/build-godot-action@v1.4.1
+          with:
+            name: example
+            preset: ${{ matrix.platform }}
+            debugMode: "true"
+        - name: Upload Artifact
+          uses: actions/upload-artifact@v2
+          with:
+            name: Client - ${{ matrix.platform }}
+            path: ${{ github.workspace }}/${{ steps.build.outputs.build }}
     runTests:
         runs-on: ubuntu-latest
-        needs: buildLinux
+        needs: build
         steps:
             - run: |
                 ls -la
