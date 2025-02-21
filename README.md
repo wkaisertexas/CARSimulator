@@ -42,14 +42,10 @@ The goal with the simulator was to create a "hello world" simulation which is a 
 
 The key factor was the use of the Spline library in Unity.
 
-```c#
-
-```
-
 ## Future Work
 
 This project was built as a proof of concept. However, I see expansion into two main categories:
 
-- Sensitivity Analysis:
-- University Compute Resources: Running a single on a single node can be quite slow. A custom server 
+- Sensitivity Analysis: How much worse can my state estimations be and my car can still opperate fine?
+- University Compute Resources: Running a single test on a single node can be slow. How can we use Slurm to run these tests in parallel
 
